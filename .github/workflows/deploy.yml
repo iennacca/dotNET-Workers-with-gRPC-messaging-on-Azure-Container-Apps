@@ -9,7 +9,7 @@ on:
 env:
   
   # alphanumeric string under 14 characters
-  RESOURCE_GROUP_NAME: resourcegroup-grpc-aca-poc
+  RESOURCE_GROUP_NAME: rg-grpc-aca-poc
 
   # specify your preferred region
   REGION: eastus
@@ -38,7 +38,7 @@ jobs:
         creds: ${{ secrets.AzureSPN }}
 
     - name: Create resource group
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         azcliversion: 2.63.0
         inlineScript: >
@@ -48,7 +48,7 @@ jobs:
           az group create -l ${{ env.REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}
 
     - name: Creating resources
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         azcliversion: 2.63.0
         inlineScript: >
@@ -116,7 +116,7 @@ jobs:
         creds: ${{ secrets.AzureSPN }}
 
     - name: Installing Container Apps extension
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         azcliversion: 2.63.0
         inlineScript: >
