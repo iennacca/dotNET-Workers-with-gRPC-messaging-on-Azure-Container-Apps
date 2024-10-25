@@ -26,6 +26,10 @@ env:
 jobs:
   provision:
     runs-on: ubuntu-latest
+    container:
+      image: mcd.microsoft.com/azure-cli
+      env:
+        GNUPGHOME: /root/.gnupg
 
     steps:
 
@@ -42,6 +46,7 @@ jobs:
       with:
         azcliversion: 2.64.0
         inlineScript: >
+          tdnf install -y zip
           echo "Creating resource group in Azure"
           echo "Executing 'az group create -l ${{ env.REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}'"
 
